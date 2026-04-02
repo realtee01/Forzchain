@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from 'react';
-// Components
+
+// Core Components
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Ticker from './components/Ticker';
 import FeatureCard from './components/FeatureCard';
 import SupportedCurrencies from './components/SupportedCurrencies';
 import NewsFeed from './components/NewsFeed';
-// Icons for Features
-import { HiLightningBolt, HiShieldCheck, HiCubeTransparent, HiUserGroup } from 'react-icons/hi';
+import Footer from './components/Footer';
+
+// Icons for the Feature Cards
+import { 
+  HiLightningBolt, 
+  HiShieldCheck, 
+  HiCubeTransparent, 
+  HiUserGroup 
+} from 'react-icons/hi';
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
 
-  // Toggle dark mode class on the HTML element
+  // Sync the 'dark' class with the HTML element for Tailwind dark mode
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add('dark');
@@ -22,80 +30,90 @@ function App() {
   }, [darkMode]);
 
   return (
-    <div className="min-h-screen text-slate-900 dark:text-white transition-colors duration-500 font-sans selection:bg-brand-purple selection:text-white">
+    <div className="min-h-screen text-slate-900 dark:text-white transition-colors duration-500 font-['Plus_Jakarta_Sans'] selection:bg-brand-purple selection:text-white">
       
-      {/* 1. Animated Background Mesh */}
+      {/* BACKGROUND MESH GRADIENT (Fixed in place) */}
       <div className="fixed inset-0 -z-10 overflow-hidden bg-slate-50 dark:bg-[#0a0516]">
+        {/* Animated Purple Orb */}
         <div className="absolute top-[-10%] left-[-10%] w-[70%] h-[70%] rounded-full bg-brand-purple/10 dark:bg-brand-purple/20 blur-[120px] animate-pulse" />
+        {/* Animated Blue Orb */}
         <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-brand-blue/10 dark:bg-brand-blue/10 blur-[120px] animate-pulse" />
       </div>
 
       <div className="relative z-10">
-        {/* 2. Top Live Price Ticker */}
+        {/* TOP MARQUEE TICKER */}
         <Ticker />
 
-        {/* 3. Navigation */}
+        {/* NAVIGATION BAR */}
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
         
         <main className="max-w-7xl mx-auto px-6">
-          {/* 4. Hero Section */}
+          
+          {/* HERO SECTION (Text + Animation) */}
           <Hero />
 
-          {/* 5. Supported Currencies Bar */}
+          {/* CURRENCY LOGOS SECTION */}
           <SupportedCurrencies />
 
-          {/* 6. Main Content Grid (Features + News) */}
-          <section className="grid grid-cols-1 lg:grid-cols-3 gap-10 mt-32 pb-32">
+          {/* MAIN GRID: Features on Left, News on Right */}
+          <section className="grid grid-cols-1 lg:grid-cols-3 gap-16 mt-32 pb-32">
             
-            {/* Left Side: Feature Grid (2 Columns) */}
+            {/* Left Content: Feature Cards Grid */}
             <div className="lg:col-span-2">
-              <div className="mb-10">
-                <h2 className="text-3xl font-black tracking-tight mb-2">Core Features</h2>
-                <p className="opacity-50 text-sm">Everything you need to manage your crypto journey.</p>
+              <div className="mb-12">
+                <h2 className="text-3xl font-extrabold tracking-tight mb-3">
+                  Ecosystem <span className="text-brand-purple">Features</span>
+                </h2>
+                <p className="opacity-50 text-base max-w-lg">
+                  Everything you need to master your digital assets in one clean interface.
+                </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <FeatureCard 
                   title="Instant Claims" 
-                  desc="Get your rewards delivered to your wallet in milliseconds. No waiting, no hassle."
+                  desc="Direct blockchain throughput for lightning-fast rewards. No middleman, no delays."
                   Icon={HiLightningBolt}
                   color="purple"
                 />
                 <FeatureCard 
-                  title="Ironclad Security" 
-                  desc="Your assets are protected by industry-leading multi-sig encryption protocols."
+                  title="Security First" 
+                  desc="Military-grade encryption and multi-signature wallets keep your $FORZ safe."
                   Icon={HiShieldCheck}
                   color="blue"
                 />
                 <FeatureCard 
-                  title="Staking Nodes" 
-                  desc="Stake your $FORZ tokens to earn passive income while securing the network."
+                  title="Smart Nodes" 
+                  desc="Earn rewards simply by holding. Stake your assets to secure the Forzchain network."
                   Icon={HiCubeTransparent}
                   color="cyan"
                 />
                 <FeatureCard 
                   title="Referral Engine" 
-                  desc="Built-in social layer: Earn 15% lifetime commission for every friend you invite."
+                  desc="Build your own network. Earn up to 15% lifetime commission on all invited user claims."
                   Icon={HiUserGroup}
                   color="indigo"
                 />
               </div>
             </div>
 
-            {/* Right Side: News & Social Feed */}
-            <aside className="space-y-8">
-              <div className="mb-10 lg:mb-0">
-                <h2 className="text-3xl font-black tracking-tight mb-2">Market News</h2>
-                <p className="opacity-50 text-sm">Stay ahead with real-time updates.</p>
+            {/* Right Content: News Feed Sidebar */}
+            <aside className="space-y-10">
+              <div className="lg:mt-0 mt-10">
+                <h2 className="text-3xl font-extrabold tracking-tight mb-3">Live Feed</h2>
+                <p className="opacity-50 text-sm">Real-time market insights and social data.</p>
               </div>
+              
               <NewsFeed />
               
-              {/* Optional: Newsletter / CTA Card */}
-              <div className="glass-card p-8 rounded-[2.5rem] bg-gradient-to-br from-brand-purple/20 to-transparent border-brand-purple/20">
-                <h4 className="font-bold text-lg mb-2">Join the Community</h4>
-                <p className="text-xs opacity-60 mb-6">Receive weekly insights and exclusive $FORZ airdrops.</p>
-                <button className="w-full py-3 bg-white dark:bg-white text-black rounded-xl font-bold text-xs hover:scale-105 transition-all">
-                  Subscribe Now
+              {/* Promotional Call-to-Action Card */}
+              <div className="glass-card p-10 rounded-[2.5rem] bg-gradient-to-br from-brand-purple/20 to-transparent border-brand-purple/20 text-center">
+                <h4 className="font-bold text-xl mb-3">Join Forzchain</h4>
+                <p className="text-xs opacity-60 mb-8 leading-relaxed">
+                  Subscribe to our newsletter for exclusive early-access to new faucet rewards.
+                </p>
+                <button className="w-full py-4 bg-slate-900 dark:bg-white text-white dark:text-black rounded-2xl font-bold text-xs hover:scale-105 transition-all shadow-xl">
+                  Sign Up Now
                 </button>
               </div>
             </aside>
@@ -103,10 +121,8 @@ function App() {
           </section>
         </main>
 
-        {/* 7. Footer Placeholder */}
-        <footer className="py-10 text-center border-t border-white/5 opacity-30 text-xs tracking-widest">
-          © 2026 FORZCHAIN ECOSYSTEM. ALL RIGHTS RESERVED.
-        </footer>
+        {/* GLOBAL FOOTER */}
+        <Footer />
       </div>
     </div>
   );
