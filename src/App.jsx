@@ -20,61 +20,48 @@ function App() {
   return (
     <div className="min-h-screen text-slate-900 dark:text-white transition-colors duration-500 font-sans selection:bg-brand-purple">
       
-      {/* --- THE GLOW LAYER START --- */}
-      <div className="fixed inset-0 -z-10 overflow-hidden bg-slate-50 dark:bg-[#0a0516]">
+      {/* --- THE SUBTLE MOTION GLOW LAYER --- */}
+      <div className="fixed inset-0 -z-10 overflow-hidden bg-[#0a0516]">
         
-        {/* Animated Purple Orb (Top Left) */}
-        <div className="absolute top-[-15%] left-[-10%] w-[80%] h-[80%] rounded-full 
-                        bg-brand-purple/20 blur-[120px] animate-float" />
+        {/* Animated Purple Orb (Top Left) - Drifting Clockwise */}
+        <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] rounded-full 
+                        bg-brand-purple/15 blur-[100px] animate-float-slow" />
                         
-        {/* Animated Blue Orb (Bottom Right) */}
-        <div className="absolute bottom-[-20%] right-[-10%] w-[70%] h-[70%] rounded-full 
-                        bg-brand-blue/20 blur-[120px] animate-float-delayed" />
+        {/* Animated Blue Orb (Bottom Right) - Drifting Counter-Clockwise */}
+        <div className="absolute bottom-[-15%] right-[-10%] w-[50%] h-[50%] rounded-full 
+                        bg-brand-blue/15 blur-[100px] animate-float-slow-delayed" />
                         
-        {/* Static Subtle Accent (Center) */}
-        <div className="absolute top-[20%] left-[30%] w-[50%] h-[50%] rounded-full 
-                        bg-brand-accent/5 blur-[100px] animate-pulse" />
+        {/* Static Central Soft Focus - Gives the "Glass" depth */}
+        <div className="absolute top-[20%] left-[30%] w-[40%] h-[40%] rounded-full 
+                        bg-brand-accent/5 blur-[90px] animate-pulse" />
       </div>
-      {/* --- THE GLOW LAYER END --- */}
 
       <div className="relative z-10">
         <Ticker />
         <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
         
-        <main className="max-w-7xl mx-auto px-6">
+        <main className="max-w-7xl mx-auto px-6 pt-10">
           <Hero />
-          <SupportedCurrencies />
-
+          
           <section id="features" className="grid grid-cols-1 lg:grid-cols-3 gap-16 mt-32 pb-32">
-            <div className="lg:col-span-2">
-              <div className="mb-12">
-                <h2 className="text-3xl font-black tracking-tight mb-3">
-                  Ecosystem <span className="text-brand-purple">Features</span>
-                </h2>
-                <p className="opacity-50 text-base max-w-lg">
-                  Everything you need to master your digital assets in one clean interface.
-                </p>
-              </div>
+            <div className="lg:col-span-2 space-y-12">
+              <SupportedCurrencies /> {/* Placing Currencies with Features Grid */}
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <FeatureCard 
-                  title="Instant Claims" 
-                  desc="Direct blockchain throughput for lightning-fast rewards."
+                  title="Instant Claims" desc="Direct blockchain throughput for lightning-fast rewards."
                   Icon={HiLightningBolt} color="purple"
                 />
                 <FeatureCard 
-                  title="Security First" 
-                  desc="Military-grade encryption and multi-signature wallets."
+                  title="Security First" desc="Military-grade encryption protocols and multi-sig wallets."
                   Icon={HiShieldCheck} color="blue"
                 />
                 <FeatureCard 
-                  title="Smart Nodes" 
-                  desc="Earn rewards simply by holding $FORZ tokens."
+                  title="Passive Rewards" desc="Earn rewards simply by holding $FORZ tokens."
                   Icon={HiCubeTransparent} color="cyan"
                 />
                 <FeatureCard 
-                  title="Referral Engine" 
-                  desc="Earn 15% lifetime commission on all invited user claims."
+                  title="Referral Engine" desc="Invite friends and earn 15% lifetime commission."
                   Icon={HiUserGroup} color="indigo"
                 />
               </div>
@@ -82,9 +69,9 @@ function App() {
 
             <aside id="social" className="space-y-10">
               <NewsFeed />
-              <div className="glass-card p-10 rounded-[2.5rem] bg-gradient-to-br from-brand-purple/20 to-transparent border-brand-purple/20">
+              <div className="glass-card p-10 rounded-[2rem] bg-gradient-to-br from-brand-purple/15 to-transparent border-brand-purple/15">
                 <h4 className="font-bold text-xl mb-3">Join Forzchain</h4>
-                <button className="w-full py-4 bg-white dark:bg-white text-black rounded-2xl font-bold text-xs hover:scale-105 transition-all">
+                <button className="w-full py-4 bg-white text-black rounded-xl font-bold text-xs hover:scale-105 transition-all shadow-xl">
                   Sign Up Now
                 </button>
               </div>
