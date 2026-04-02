@@ -54,7 +54,7 @@ const Footer = () => {
       </div>
 
       <div className="mt-16 text-center text-[10px] opacity-30 tracking-[0.2em] uppercase">
-        © 2026 FORZCHAIN. Built with passion for the future of finance.
+        © 2026 Tobiloba. Built with passion for the future of finance.
       </div>
     </footer>
   );
