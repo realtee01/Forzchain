@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .glass-card {
+    @apply bg-white/10 dark:bg-black/20 
+           backdrop-blur-xl 
+           border border-white/20 dark:border-white/10 
+           shadow-2xl transition-all duration-300;
+  }
+
+  .mesh-bg {
+    @apply fixed inset-0 -z-10 overflow-hidden bg-slate-50 dark:bg-[#0a0516];
+  }
+
+  .orb {
+    @apply absolute rounded-full blur-[120px] opacity-30 animate-pulse;
+  }
+}
