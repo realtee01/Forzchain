@@ -2,87 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-}
-
 @layer components {
-  /* --- THE GLASS MORPHISM SYSTEM --- */
-  /* This creates the premium "Old UI" look you liked */
   .glass-card {
-    @apply bg-white/5 dark:bg-black/20 
-           backdrop-blur-xl 
-           border border-white/10 
-           shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] 
-           transition-all duration-500;
-  }
-
-  /* --- THE MESH BACKGROUND --- */
-  .mesh-bg {
-    @apply fixed inset-0 -z-10 overflow-hidden bg-[#0a0516];
-  }
-
-  /* --- THE GLOWING ORBS --- */
-  .orb {
-    @apply absolute rounded-full blur-[110px] opacity-20 mix-blend-screen;
+    @apply bg-white/5 dark:bg-black/20 backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-500;
   }
 }
 
-/* --- CUSTOM ANIMATIONS FOR MOTION --- */
-
-/* 1. Floating Motion (For the background Orbs) */
-@keyframes float {
-  0% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -50px) scale(1.1); }
-  66% { transform: translate(-20px, 20px) scale(0.9); }
-  100% { transform: translate(0, 0) scale(1); }
+/* --- 3D MOTION PHYSICS --- */
+@keyframes float-3d {
+  0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  33% { transform: translate(40px, -60px) rotate(5deg) scale(1.1); }
+  66% { transform: translate(-20px, 30px) rotate(-5deg) scale(0.9); }
+  100% { transform: translate(0, 0) rotate(0deg) scale(1); }
 }
 
-/* 2. Gradient Shimmer (For the FORZCHAIN text) */
-@keyframes gradient-x {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.animate-float-3d {
+  animation: float-3d 18s ease-in-out infinite;
 }
 
-/* --- UTILITY CLASSES FOR MOTION --- */
-
-/* Slow drifting background */
-.animate-float-slow {
-  animation: float 20s ease-in-out infinite;
+.animate-float-3d-slow {
+  animation: float-3d 25s ease-in-out infinite reverse;
 }
 
-/* Reverse drifting for depth */
-.animate-float-slow-reverse {
-  animation: float 25s ease-in-out infinite reverse;
-}
-
-/* The moving gradient on the text */
-.animate-gradient-x {
-  background-size: 200% 200%;
-  animation: gradient-x 10s ease infinite;
-}
-
-/* Custom Scrollbar for that "Finer" look */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0a0516;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #1e1b4b;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #8b5cf6;
-}
-
-/* Selection color */
-::selection {
-  background: rgba(139, 92, 246, 0.3);
-  color: white;
+/* Glass Sphere Look */
+.glass-sphere {
+  @apply absolute rounded-full mix-blend-screen filter blur-[60px] opacity-25;
+  background: radial-gradient(circle at 30% 30%, var(--tw-gradient-from), transparent 70%);
 }
